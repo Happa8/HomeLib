@@ -29,6 +29,8 @@
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "postinstall": "install-app-deps"
+    "postinstall": "install-app-deps",
+    "start": "webpack & electron ./dist/index.js",
+    "build": "node ./build-win"
   }
 }

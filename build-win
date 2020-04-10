@@ -1,0 +1,14 @@
+const builder = require("electron-builder");
+
+builder.build({
+  config: {
+    appId: "local.test.electrontest1",
+    productName: "testapp1",
+    directories: {
+      output: "build"
+    },
+    win: {
+      target: "zip"
+    }
+  }
+});
