@@ -1,0 +1,64 @@
+Arguments: 
+  C:\Program Files (x86)\Nodist\v-x64\11.13.0\node.exe C:\Program Files (x86)\Nodist\bin\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files\PowerShell\7;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Nodist\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\PowerShell\7\;C:\Program Files\Git\cmd;C:\Users\Kotar\.windows-build-tools\python27\;C:\Users\Kotar\scoop\shims;C:\Users\Kotar\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\Kotar\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Kotar\AppData\Local\hyper\app-3.0.1-canary4\resources\bin;C:\Users\Kotar\AppData\Local\Programs\Microsoft VS Code 2\bin;C:\Users\Kotar\.dotnet\tools;C:\Users\Kotar\AppData\Local\Keybase\;C:\Users\Kotar\AppData\Local\GitHubDesktop\bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  11.13.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: E:\10_projects\HomeLib\package.json: Unexpected token } in JSON at position 903
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "homelib",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/Happa8/HomeLib.git",
+    "author": "Happa8 <Happa.Eight@gmail.com>",
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "dependencies": {
+      "@types/react": "^16.9.31",
+      "@types/react-dom": "^16.9.6",
+      "@types/react-router-dom": "^5.1.3",
+      "copy-webpack-plugin": "^5.1.1",
+      "react": "^16.13.1",
+      "react-dom": "^16.13.1",
+      "react-router-dom": "^5.1.2",
+      "sqlite3": "^4.0.0",
+      "typeorm": "^0.2.15",
+      "webpack": "^4.42.1",
+      "webpack-filter-warnings-plugin": "^1.2.1",
+      "webpack-node-externals": "^1.7.2"
+    },
+    "devDependencies": {
+      "electron": "^8.2.0",
+      "electron-builder": "^22.4.1",
+      "eslint": "^6.8.0",
+      "ts-loader": "^6.2.2",
+      "typescript": "^3.3.3333",
+      "webpack-cli": "^3.3.11"
+    },
+    "scripts": {
+      "postinstall": "install-app-deps"
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
