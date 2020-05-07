@@ -3,11 +3,16 @@ const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const createElectronReloadWebpackPlugin = require("electron-reload-webpack-plugin");
 
 const FileCopy = new CopyWebpackPlugin([{
     from: "./src/index.html",
     to: ""
 }])
+
+const ElectronReloadWebpackPlugin = createElectronReloadWebpackPlugin({
+    path: "./"
+});
 
 var main = {
     mode: "development",
@@ -32,6 +37,7 @@ var main = {
         __dirname: false
     },
     plugins: [
+        ElectronReloadWebpackPlugin(),
         new FilterWarningsPlugin({
             exclude: [
                 /mongodb/,
@@ -75,7 +81,8 @@ var renderer = {
     resolve: {
         extensions: [".json", ".js", ".jsx", ".css", ".ts", ".tsx"]
     },
-    externals: [nodeExternals()]
+    externals: [nodeExternals()],
+    plugins: [ElectronReloadWebpackPlugin()]
 };
 
 module.exports = [main, renderer];

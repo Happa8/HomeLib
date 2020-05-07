@@ -1,7 +1,7 @@
 {
   "name": "homelib",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/Happa8/HomeLib.git",
   "author": "Happa8 <Happa.Eight@gmail.com>",
   "license": "MIT",
@@ -12,6 +12,9 @@
     "@types/react-router-dom": "^5.1.3",
     "@types/styled-components": "^5.1.0",
     "copy-webpack-plugin": "^5.1.1",
+    "electron-connect": "^0.6.3",
+    "electron-reload": "^1.5.0",
+    "electron-reload-webpack-plugin": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",

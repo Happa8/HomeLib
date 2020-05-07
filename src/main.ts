@@ -1,5 +1,7 @@
 import { createConnection, Like } from "typeorm";
 import { app, BrowserWindow, ipcMain } from "electron";
+import * as path from "path";
+const { client } = require("electron-connect");
 
 let mainWindow: BrowserWindow | null;
 
@@ -25,6 +27,8 @@ const createWindow = async () => {
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
+
+  client.create(mainWindow);
 };
 
 app.on("ready", createWindow);
