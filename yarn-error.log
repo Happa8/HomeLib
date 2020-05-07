@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files (x86)\Nodist\v-x64\11.13.0\node.exe C:\Program Files (x86)\Nodist\bin\node_modules\yarn\bin\yarn.js add @types/styled-component
+  C:\Program Files (x86)\Nodist\v-x64\11.13.0\node.exe C:\Program Files (x86)\Nodist\bin\node_modules\yarn\bin\yarn.js add /
 
 PATH: 
   C:\Program Files\PowerShell\7;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Nodist\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\PowerShell\7\;C:\Program Files\Git\cmd;C:\Program Files\gnuplot\bin;C:\Users\Kotar\.windows-build-tools\python27\;C:\Users\Kotar\scoop\shims;C:\Users\Kotar\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\Kotar\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Kotar\AppData\Local\hyper\app-3.0.1-canary4\resources\bin;C:\Users\Kotar\AppData\Local\Programs\Microsoft VS Code 2\bin;C:\Users\Kotar\.dotnet\tools;C:\Users\Kotar\AppData\Local\GitHubDesktop\bin;C:\Program Files\Java\jdk-14\bin;E:\texlive\2020\bin\win32;C:\Users\Kotar\AppData\Local\Keybase\
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fstyled-component: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:66987:18)
-      at Request.self.callback (C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:140748:22)
-      at Request.emit (events.js:193:13)
-      at Request.<anonymous> (C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:141720:10)
-      at Request.emit (events.js:193:13)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Nodist\bin\node_modules\yarn\lib\cli.js:141642:12)
-      at Object.onceWrapper (events.js:281:20)
-      at IncomingMessage.emit (events.js:198:15)
-      at endReadableNT (_stream_readable.js:1142:12)
-      at processTicksAndRejections (internal/process/task_queues.js:81:17)
+  Error: EPERM: operation not permitted, lstat 'E:\System Volume Information'
 
 npm manifest: 
   {
@@ -39,6 +29,7 @@ npm manifest:
       "@types/react": "^16.9.31",
       "@types/react-dom": "^16.9.6",
       "@types/react-router-dom": "^5.1.3",
+      "@types/styled-components": "^5.1.0",
       "copy-webpack-plugin": "^5.1.1",
       "react": "^16.13.1",
       "react-dom": "^16.13.1",
@@ -271,6 +262,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.5.tgz#527d20ef68571a4af02ed74350164e7a67544860"
     integrity sha512-wLD/Aq2VggCJXSjxEwrMafIP51Z+13H78nXIX0ABEuIGhmB5sNGbR113MOKo+yfw+RDo1ZU3DM6yfnnRF/+ouw==
   
+  "@types/hoist-non-react-statics@*":
+    version "3.3.1"
+    resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
+    integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
+    dependencies:
+      "@types/react" "*"
+      hoist-non-react-statics "^3.3.0"
+  
   "@types/node@*":
     version "13.11.1"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-13.11.1.tgz#49a2a83df9d26daacead30d0ccc8762b128d53c7"
@@ -290,6 +289,13 @@ Lockfile:
     version "16.9.6"
     resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.6.tgz#9e7f83d90566521cc2083be2277c6712dcaf754c"
     integrity sha512-S6ihtlPMDotrlCJE9ST1fRmYrQNNwfgL61UB4I1W7M6kPulUKx9fXAleW5zpdIjUQ4fTaaog8uERezjsGUj9HQ==
+    dependencies:
+      "@types/react" "*"
+  
+  "@types/react-native@*":
+    version "0.62.7"
+    resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.62.7.tgz#bfc5ed03ba576f288603daa3f67f0f67d9a8bf57"
+    integrity sha512-FGFEt9GcFVl//XxWmxkeBxAx0YnzyEhJpR8hOJrjfaFKZm0KjHzzyCmCksBAP2qHSTrcJCiBkIvYCX/kGiOgww==
     dependencies:
       "@types/react" "*"
   
@@ -316,6 +322,16 @@ Lockfile:
     integrity sha512-8AJlYMOfPe1KGLKyHpflCg5z46n0b5DbRfqDksxBLBTUpB75ypDBAO9eCUcjNwE6LCUslwTz00yyG/X9gaVtow==
     dependencies:
       "@types/prop-types" "*"
+      csstype "^2.2.0"
+  
+  "@types/styled-components@^5.1.0":
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.0.tgz#24d3412ba5395aa06e14fbc93c52f9454cebd0d6"
+    integrity sha512-ZFlLCuwF5r+4Vb7JUmd+Yr2S0UBdBGmI7ctFTgJMypIp3xOHI4LCFVn2dKMvpk6xDB2hLRykrEWMBwJEpUAUIQ==
+    dependencies:
+      "@types/hoist-non-react-statics" "*"
+      "@types/react" "*"
+      "@types/react-native" "*"
       csstype "^2.2.0"
   
   "@types/yargs-parser@*":
@@ -2556,7 +2572,7 @@ Lockfile:
       minimalistic-assert "^1.0.0"
       minimalistic-crypto-utils "^1.0.1"
   
-  hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0:
+  hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
     version "3.3.2"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
     integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
