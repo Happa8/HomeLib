@@ -17,6 +17,7 @@ const App: React.FC = () => {
     <Main>
       <GlobalStyle />
       <Navigator />
+      あいうえお
     </Main>
   );
 };

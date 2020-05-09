@@ -69,8 +69,8 @@ var renderer = {
   target: "electron-renderer",
   entry: path.join(__dirname, "src", "renderer", "app.tsx"),
   output: {
-    filename: "index.js",
-    path: path.resolve(__dirname, "dist", "scripts"),
+    filename: "index-renderer.js",
+    path: path.resolve(__dirname, "dist"),
   },
   node: {
     __dirname: false,
@@ -84,7 +84,27 @@ var renderer = {
       },
       {
         test: /\.svg$/,
-        use: [{ loader: "react-svg-loader" }],
+        use: [
+          {
+            loader: "react-svg-loader",
+          },
+        ],
+      },
+      {
+        test: /\.styl$/,
+        use: ["css-loader", "stylus-loader"],
+      },
+      {
+        test: /\.(woff|ttf|eot|otf)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
       },
     ],
   },

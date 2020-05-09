@@ -1,5 +1,13 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+import NotoSansR from "../assets/fonts/NotoSans/NotoSansCJKjp-Regular.woff";
+import NotoSansL from "../assets/fonts/NotoSans/NotoSansCJKjp-Light.woff";
+import NotoSansB from "../assets/fonts/NotoSans/NotoSansCJKjp-Bold.woff";
+
+import NotoSansOR from "../assets/fonts/NotoSans/NotoSansCJKjp-Regular.otf";
+import NotoSansOL from "../assets/fonts/NotoSans/NotoSansCJKjp-Light.otf";
+import NotoSansOB from "../assets/fonts/NotoSans/NotoSansCJKjp-Bold.otf";
+
 const GlobalStyle = createGlobalStyle`
 /* 
 html5doctor.com Reset Stylesheet
@@ -173,6 +181,24 @@ hr {
 input,
 select {
     vertical-align: middle;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url(${NotoSansOL}) format('opentype'), url(${NotoSansL}) format('woff');
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url(${NotoSansOR}) format('opentype'), url(${NotoSansR}) format('woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url(${NotoSansOB}) format('opentype'),url(${NotoSansB}) format('woff');
+    font-weight: bold;
 }
 `;
 
