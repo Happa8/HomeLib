@@ -18,6 +18,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
+    "react-svg-loader": "^3.0.3",
     "sqlite3": "^4.0.0",
     "styled-components": "^5.1.0",
     "typeorm": "^0.2.15",
@@ -35,7 +36,7 @@
   },
   "scripts": {
     "postinstall": "install-app-deps",
-    "start": "webpack & electron ./dist/index.js",
+    "start": "webpack --watch",
     "build": "node ./build-win"
   }
 }

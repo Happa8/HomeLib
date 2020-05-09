@@ -2,7 +2,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import styled from "styled-components";
 
-import GlobalStyle from "./components/globalStyle";
+import GlobalStyle from "../util/globalStyle";
+import Navigator from "./view/organism/navigator";
 
 const container = document.getElementById("app");
 
@@ -15,7 +16,7 @@ const App: React.FC = () => {
   return (
     <Main>
       <GlobalStyle />
-      Hello, world!
+      <Navigator />
     </Main>
   );
 };
