@@ -7,12 +7,15 @@ let mainWindow: BrowserWindow | null;
 
 const createWindow = async () => {
   mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 700,
     webPreferences: {
       nodeIntegration: true,
     },
   });
   mainWindow.loadURL(`file:///${__dirname}/index.html`);
   mainWindow.webContents.openDevTools;
+  //mainWindow.setMenu(null);
 
   // DB接続
   //   const connection = await createConnection({
@@ -28,6 +31,7 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
+  // TODO:build時に以下の一文を消すような機構を組み込む
   client.create(mainWindow);
 };
 

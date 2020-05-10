@@ -93,6 +93,7 @@ video {
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
+    font-family: "Noto Sans"
 }
 
 body {
