@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import LogoType from "../../../assets/LogoType.svg";
 import Logo from "../../../assets/Logo.svg";
@@ -31,10 +32,14 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const Navigator = () => {
+const Navigator: React.FC<RouteComponentProps> = (props) => {
   return (
     <Wrapper>
-      <LogoWrapper>
+      <LogoWrapper
+        onClick={() => {
+          props.history.push("/");
+        }}
+      >
         <LogoType />
       </LogoWrapper>
       <SeparateBar />
@@ -43,4 +48,4 @@ const Navigator = () => {
   );
 };
 
-export default Navigator;
+export default withRouter(Navigator);

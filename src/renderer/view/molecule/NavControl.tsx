@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import NavButton from "../atom/NavButton";
 
@@ -12,33 +13,36 @@ const Wrapper = styled.div`
   }
 `;
 
-const NavControl = () => {
+const NavControl: React.FC<RouteComponentProps> = (props) => {
+  const handleChangePage = (address: string) => {
+    props.history.push(address);
+  };
   return (
     <Wrapper>
       <NavButton
         onClick={() => {
-          console.log("検索");
+          handleChangePage("/search");
         }}
       >
         検索
       </NavButton>
       <NavButton
         onClick={() => {
-          console.log("登録");
+          handleChangePage("/touroku");
         }}
       >
         登録
       </NavButton>
       <NavButton
         onClick={() => {
-          console.log("貸出");
+          handleChangePage("/kashidashi");
         }}
       >
         貸出
       </NavButton>
       <NavButton
         onClick={() => {
-          console.log("返却");
+          handleChangePage("/henkyaku");
         }}
       >
         返却
@@ -47,4 +51,4 @@ const NavControl = () => {
   );
 };
 
-export default NavControl;
+export default withRouter(NavControl);
