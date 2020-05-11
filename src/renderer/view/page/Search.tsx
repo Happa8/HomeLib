@@ -13,12 +13,28 @@ const Content = styled.div`
   width: 80%;
 `;
 
-const Search = () => {
+const Search: React.FC = () => {
+  const [searchText, setSearchText] = React.useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    switch (event.target.name) {
+      case "search":
+        setSearchText(event.target.value);
+        break;
+    }
+  };
+
   return (
     <Wrapper>
       検索
       <Content>
-        <SearchBar />
+        <SearchBar
+          value={searchText}
+          onChange={handleChange}
+          onClick={() => {
+            console.log(searchText);
+          }}
+        />
       </Content>
     </Wrapper>
   );

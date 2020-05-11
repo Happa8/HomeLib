@@ -4,6 +4,12 @@ import styled from "styled-components";
 import Button from "../atom/InputButton";
 import Input from "../atom/InputForm";
 
+type Props = {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+};
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -15,20 +21,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const SearchBar: React.FC = () => {
-  const [searchText, setSearchText] = React.useState("");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    switch (event.target.name) {
-      case "search":
-        setSearchText(event.target.value);
-        break;
-    }
-  };
+const SearchBar: React.FC<Props> = (props) => {
   return (
     <Wrapper>
-      <Input name="search" value={searchText} onChange={handleChange} />
-      <Button>検索</Button>
+      <Input name="search" value={props.value} onChange={props.onChange} />
+      <Button onClick={props.onClick}>検索</Button>
     </Wrapper>
   );
 };
