@@ -1,12 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  width: 100%;
-`;
+import Page from "../template/page";
 
 const Henkyaku = () => {
-  return <Wrapper>返却</Wrapper>;
+  return <Page title="返却">返却</Page>;
 };
 
 export default Henkyaku;

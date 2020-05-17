@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import TopControl from "../molecule/TopControl";
+import Page from "../template/page";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -9,9 +10,9 @@ const Wrapper = styled.div`
 
 const Home = () => {
   return (
-    <Wrapper>
+    <Page title="HOME">
       <TopControl />
-    </Wrapper>
+    </Page>
   );
 };
 

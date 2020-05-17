@@ -19,6 +19,7 @@ const Main = styled.main`
   height: 100vh;
   display: flex;
   flex-direction: row;
+  overflow: hidden;
 `;
 
 const App: React.FC = () => {

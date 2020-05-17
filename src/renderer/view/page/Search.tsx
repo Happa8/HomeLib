@@ -3,9 +3,10 @@ import styled from "styled-components";
 import useSearchBooks from "../../../hooks/useSearchBooks";
 
 import SearchBar from "../molecule/SearchBar";
-import testfunc, { Book } from "../../../util/searchBook";
+import { Book } from "../../../util/searchBook";
 import ResultItem from "../molecule/ResultItem";
 import { Props as ResultProps } from "../atom/ResultColumn";
+import Page from "../template/page";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -46,40 +47,28 @@ const Search: React.FC = () => {
     res.push({ label: "ISBN", content: data.ISBN.toString() });
     res.push({ label: "著者", content: data.authors?.toString() });
     res.push({ label: "出版社", content: data.publisher });
-    res.push({ label: "出版年月日", content: data.publishedYear });
+    res.push({ label: "出版年月日", content: data.publishedYear.toString() });
     res.push({ label: "説明", content: data.description });
     console.log(res);
     return res;
   };
 
   return (
-    <Wrapper>
-      検索
-      <Content>
-        <SearchBar
-          value={searchText}
-          onChange={handleChange}
-          onClick={() => {
-            console.log(searchText);
-            // testfunc(searchText);
-            handleClick();
-          }}
-        />
-        {status === "loaded" ? (
-          // <div>
-          //   <p>{book.ISBN}</p>
-          //   <p>{book.title}</p>
-          //   <p>{book.authors}</p>
-          //   <p>{book.description}</p>
-          //   <p>{book.publisher}</p>
-          //   <p>{book.publishedYear}</p>
-          // </div>
-          <ResItem title={book.title} contents={setDisplayData(book)} />
-        ) : (
-          <div>Now Loading...</div>
-        )}
-      </Content>
-    </Wrapper>
+    <Page title="検索">
+      <SearchBar
+        value={searchText}
+        onChange={handleChange}
+        onClick={() => {
+          console.log(searchText);
+          handleClick();
+        }}
+      />
+      {status === "loaded" ? (
+        <ResItem title={book.title} contents={setDisplayData(book)} />
+      ) : (
+        <div>Now Loading...</div>
+      )}
+    </Page>
   );
 };
 

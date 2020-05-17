@@ -4,7 +4,7 @@ import * as util from "../util/util";
 export type Book = {
   title: string;
   authors: string[];
-  publishedYear: string;
+  publishedYear: number;
   ISBN: number;
   description: string;
   publisher: string;
@@ -16,7 +16,7 @@ const preproText = (str: string) => {
   return str;
 };
 
-const testfunc = async (isbn: string): Promise<Book> => {
+const fetchBookData = async (isbn: string): Promise<Book> => {
   var result: Book | undefined;
   var gbares2: any;
   const ndlres: any = await fetch(
@@ -117,12 +117,18 @@ const testfunc = async (isbn: string): Promise<Book> => {
         authors: [(item.author._text as string).toString().split(",")[0]],
         description: "",
         publisher: util.fixArray(item["dc:publisher"])?._text as string,
-        publishedYear: item["pubDate"]?._text as string,
+        publishedYear: item["pubDate"]?._text as number,
       };
     }
 
     if (result.publisher === undefined) {
       result.publisher = util.fixArray(item["dc:publisher"])?._text as string;
+    }
+
+    if (result.publishedYear != undefined) {
+      result.publishedYear = parseInt(
+        result.publishedYear.toString().match(new RegExp("[0-9]{4}", "g"))[0]
+      );
     }
   } else {
     result = undefined;
@@ -132,4 +138,4 @@ const testfunc = async (isbn: string): Promise<Book> => {
   return result;
 };
 
-export default testfunc;
+export default fetchBookData;
