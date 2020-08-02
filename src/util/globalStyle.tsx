@@ -85,7 +85,9 @@ summary,
 time,
 mark,
 audio,
-video {
+video,
+textarea,
+input {
     margin: 0;
     padding: 0;
     border: 0;
@@ -180,7 +182,7 @@ hr {
 }
 
 input,
-select {
+select,textarea {
     vertical-align: middle;
 }
 
@@ -201,6 +203,8 @@ select {
     src: url(${NotoSansOB}) format('opentype'),url(${NotoSansB}) format('woff');
     font-weight: bold;
 }
+
+
 `;
 
 export default GlobalStyle;

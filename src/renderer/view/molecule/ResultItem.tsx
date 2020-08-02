@@ -2,17 +2,19 @@ import * as React from "react";
 import styled from "styled-components";
 import { Props as ResultProps } from "../atom/ResultColumn";
 import ResultColumn from "../atom/ResultColumn";
-
+import Button from "../atom/Button";
 import COLOR from "../../../util/color";
+import { Link } from "react-router-dom";
 
 type Props = {
   title: string;
+  id: string;
   contents: ResultProps[];
   className?: string;
 };
 
 const Wrapper = styled.div`
-  width: 80%;
+  width: 100%;
   box-sizing: border-box;
   padding: 20px 40px;
   background-color: ${COLOR.GLAY};
@@ -31,13 +33,24 @@ const Title = styled.div`
   font-weight: bold;
 `;
 
+const Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const ResultItem: React.FC<Props> = (props) => {
+  const linkaddress = "/book/edit/" + props.id;
   return (
     <Wrapper className={props.className}>
       <Title>{props.title}</Title>
       {props.contents.map((elm) => (
         <ResultColumn label={elm.label} content={elm.content} key={elm.label} />
       ))}
+      <Buttons>
+        <Link to={linkaddress}>
+          <Button>更新</Button>
+        </Link>
+      </Buttons>
     </Wrapper>
   );
 };

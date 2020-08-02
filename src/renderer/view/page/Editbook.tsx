@@ -1,34 +1,15 @@
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import useSearchBooks from "../../../hooks/useSearchBooks";
-import useDB, { Query } from "../../../hooks/useBookDB";
-import SearchBar from "../molecule/SearchBar";
-import { Book } from "../../../util/searchBook";
-import ResultItem from "../molecule/ResultItem";
-import { Props as ResultProps } from "../atom/ResultColumn";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+
 import Page from "../template/page";
+import useDB, { Query } from "../../../hooks/useBookDB";
 import Input from "../organism/MultipulInput";
 import { Props as InputProps } from "../molecule/InputWithLabel";
 import Button from "../atom/Button";
 import BookEntity from "../../../entity/Book";
-
-const Wrapper = styled.div`
-  padding: 20px;
-  width: 100%;
-`;
-
-const Content = styled.div`
-  margin-left: 10%;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ResItem = styled(ResultItem)`
-  margin: 40px 0;
-`;
+import ResultItem from "../molecule/ResultItem";
 
 const ButtonArea = styled.div`
   right: 0;
@@ -41,19 +22,22 @@ const ButtonArea = styled.div`
   }
 `;
 
-const Touroku = () => {
-  const [query, setQuery] = useState<string>("");
+type Props = {} & RouteComponentProps<{ id: string }>;
+
+const EditBook: React.FC<Props> = (props) => {
+  const [query, setQuery] = useState<Query>({
+    mode: "get",
+    table: "book",
+    query: { id: props.match.params.id },
+  });
+  const { res, status } = useDB(query);
+
   const [bookTitle, setBookTitle] = useState("");
   const [bookISBN, setBookISBN] = useState("");
   const [bookAuthors, setBookAuthors] = useState("");
   const [bookPublisher, setBookPublisher] = useState("");
   const [bookPubYear, setBookPubYear] = useState("");
   const [bookDescription, setBookDescription] = useState("");
-  const [submitQuery, setSubmitQuery] = useState<Query>({ mode: "idle" });
-  const { book, status } = useSearchBooks(query);
-  const { status: DBstatus } = useDB(submitQuery);
-  const [testCheck, setTestCheck] = useState<string[]>([]);
-  const [testRadio, setTestRadio] = useState<string>("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     switch (event.target.name) {
@@ -78,8 +62,23 @@ const Touroku = () => {
     }
   };
 
+  React.useEffect(() => {
+    if (status === "loaded") {
+      console.log(res);
+      setBookTitle(res[0].title);
+      setBookISBN(res[0].isbn.toString());
+      setBookAuthors(res[0].creators[0]?.name);
+      setBookPublisher(res[0].publisher.name);
+      setBookPubYear(res[0].pubYear?.toString());
+      setBookDescription(res[0].description);
+    } else if (status == "deleted") {
+      props.history.push("/search");
+    }
+  }, [status]);
+
   const createQuery = (): Query => {
     const query: BookEntity = {
+      id: res[0].id,
       title: bookTitle,
       isbn: parseInt(bookISBN),
       creators: [{ name: bookAuthors }],
@@ -94,40 +93,16 @@ const Touroku = () => {
       query: query,
     };
   };
-
-  const clear = () => {
-    setBookTitle("");
-    setBookISBN("");
-    setBookAuthors("");
-    setBookPublisher("");
-    setBookPubYear("");
-    setBookDescription("");
-  };
-
-  const handleClick = () => {
-    setQuery(bookISBN.toString());
-  };
-
   const submit = () => {
-    setSubmitQuery(createQuery);
+    setQuery(createQuery);
   };
-
-  React.useEffect(() => {
-    if (status == "loaded") {
-      setBookTitle(book.title);
-      setBookISBN(book.ISBN.toString());
-      setBookAuthors(book.authors.toString());
-      setBookPublisher(book.publisher);
-      setBookPubYear(book.publishedYear?.toString());
-      setBookDescription(book.description);
-    }
-  }, [status]);
-
-  React.useEffect(() => {
-    if (DBstatus == "loaded") {
-      clear();
-    }
-  }, [DBstatus]);
+  const deleteBook = () => {
+    setQuery({
+      mode: "delete",
+      table: "book",
+      id: [res[0].id],
+    });
+  };
 
   const InputData: InputProps[] = [
     {
@@ -184,81 +159,30 @@ const Touroku = () => {
       },
       type: "textarea",
     },
-    // {
-    //   name: "checktest",
-    //   label: "ラジオ",
-    //   type: "radio",
-    //   input: {
-    //     data: [
-    //       {
-    //         label: "case1",
-    //         value: "case1",
-    //       },
-    //       {
-    //         label: "case2",
-    //         value: "case2",
-    //       },
-    //       {
-    //         label: "case3",
-    //         value: "case3",
-    //       },
-    //     ],
-    //     valueSetter: setTestRadio,
-    //     value: testRadio,
-    //   },
-    // },
   ];
 
-  const resulttext = () => {
-    switch (DBstatus) {
-      case "idle":
-        return "";
-      case "loading":
-        return "登録中";
-      case "loaded":
-        return "登録完了！";
-    }
-  };
-
   return (
-    <Page title="登録">
+    <Page title="編集">
       <Input InputProps={InputData} />
       <ButtonArea>
         <Button
           theme="reversed"
           onClick={() => {
-            console.log(testRadio);
+            deleteBook();
           }}
         >
-          テスト
-        </Button>
-        <Button
-          theme="reversed"
-          onClick={() => {
-            handleClick();
-          }}
-        >
-          ISBNから入力
-        </Button>
-        <Button
-          theme="reversed"
-          onClick={() => {
-            clear();
-          }}
-        >
-          クリア
+          削除
         </Button>
         <Button
           onClick={() => {
             submit();
           }}
         >
-          登録
+          更新
         </Button>
       </ButtonArea>
-      <div>{resulttext()}</div>
     </Page>
   );
 };
 
-export default Touroku;
+export default withRouter(EditBook);

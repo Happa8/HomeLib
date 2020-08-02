@@ -72,3 +72,25 @@ export const toHalfWidth = (str: string) => {
     String.fromCharCode(str.charCodeAt(0) - 0xfee0)
   );
 };
+
+// 和集合
+export const SetUnion = <T>(x: Set<T>, y: Set<T>): Set<T> => {
+  return new Set([...Array.from(x), ...Array.from(y)]);
+};
+
+// 積集合
+export const SetIntersection = <T>(x: Set<T>, y: Set<T>): Set<T> => {
+  return new Set([...Array.from(x).filter((e) => y.has(e))]);
+};
+
+// 差集合
+export const SetDifference = <T>(x: Set<T>, y: Set<T>): Set<T> => {
+  return new Set([...Array.from(x).filter((e) => !y.has(e))]);
+};
+
+// UnionTypeをIntersectionTypeに変換
+export type UnionToIntersection<U> = (
+  U extends any ? (k: U) => void : never
+) extends (k: infer I) => void
+  ? I
+  : never;

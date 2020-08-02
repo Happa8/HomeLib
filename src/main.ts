@@ -2,6 +2,7 @@ import { createConnection, Like } from "typeorm";
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 const { client } = require("electron-connect");
+import { IpcController } from "./util/ipcapi";
 
 let mainWindow: BrowserWindow | null;
 
@@ -15,6 +16,7 @@ const createWindow = async () => {
   });
   mainWindow.loadURL(`file:///${__dirname}/index.html`);
   mainWindow.webContents.openDevTools;
+  IpcController.initialize();
   //mainWindow.setMenu(null);
 
   // DB接続
